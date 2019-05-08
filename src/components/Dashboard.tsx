@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Dashboard = (props) => (
+const Dashboard = (props: object) => (
   <React.Fragment>
     <h1>Dashboard</h1>
   </React.Fragment>
