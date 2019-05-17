@@ -1,0 +1,10 @@
+{
+  "name": "farmstudy-api",
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.rs",
+      "use": "@now/rust"
+    }
+  ]
+}
