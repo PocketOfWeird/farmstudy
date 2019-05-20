@@ -13,6 +13,7 @@ use rocket::http::Status;
 use rocket_contrib::databases::rusted_cypher::{GraphClient, GraphError};
 use rocket_contrib::databases::rusted_cypher::cypher::CypherResult;
 use rocket_contrib::json::{Json, JsonValue};
+use rocket_contrib::serve::StaticFiles;
 
 // Database Connection
 #[database("neo4j")]
@@ -40,18 +41,19 @@ fn index(conn: GraphDBConn) -> &'static str {
     return "Done";
 }
 
-#[post("/genus/create", format = "json", data = "<data>")]
-fn genus_create(conn: GraphDBConn, data: Json<Genus>) -> Result<CypherResult, GraphError> {
-    let genus = Genus { id: Some(Uuid::new_v4()), name: data.name };
-    let result = conn.exec(format!("CREATE (g:Genus {{ id: {:?}, name: {:?} }})", genus.id, genus.name))?;
-
-    return result;
-}
+// #[post("/genus/create", format = "json", data = "<data>")]
+// fn genus_create(conn: GraphDBConn, data: Json<Genus>) -> Result<CypherResult, GraphError> {
+//     let genus = Genus { id: Some(Uuid::new_v4()), name: data.name };
+//     let result = conn.exec(format!("CREATE (g:Genus {{ id: {:?}, name: {:?} }})", genus.id, genus.name))?;
+//
+//     return result;
+// }
 
 
 fn main() {
     rocket::ignite()
         .attach(GraphDBConn::fairing())
-        .mount("/", routes![index])
+        .mount("/api", routes![index])
+        .mount("/", StaticFiles::from("ui/public"))
         .launch();
 }

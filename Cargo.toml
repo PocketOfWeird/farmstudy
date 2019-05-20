@@ -5,10 +5,8 @@ edition = "2018"
 
 [dependencies]
 rocket = "0.4"
-rocket_contrib = { version = "0.4", default-features = false, features = ["cypher_pool", "json", "serve"] }
-serde = "1.0"
-serde_json = "1.0"
-serde_derive = "1.0"
+rocket_contrib = { version = "0.4", features = ["cypher_pool"] }
 rusted_cypher = "1.1"
 juniper = "0.11"
-uuid = { version = "0.7", features = ["serde", "v4"] }
+juniper_rocket = "0.3"
+uuid = { version = "0.7", features = ["v4"] }
