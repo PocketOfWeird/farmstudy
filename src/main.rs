@@ -1,23 +1,17 @@
 #![feature(proc_macro_hygiene, decl_macro)]
 
+#[macro_use]
+extern crate serde_derive;
 use rocket::routes;
 use rocket_contrib::serve::{StaticFiles};
-mod graphql;
-use graphql::schema::{Query, Mutation, Schema};
 mod db;
 mod routes;
 
 fn main() {
     rocket::ignite()
         .attach(db::PrimaryDb::fairing())
-        .manage(Schema::new(
-            Query,
-            Mutation,
-        ))
-        .mount("/", routes![
-            routes::get_graphql_handler,
-            routes::post_graphql_handler,
-            routes::graphiql
+        .mount("/api", routes![
+            routes::genus::create,
         ])
         .mount("/", StaticFiles::from("ui/public"))
         .launch();

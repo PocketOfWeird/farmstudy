@@ -14,7 +14,7 @@ fn handler(request: Request<()>) -> http::Result<Response<String>> {
 
     let crop = Crop {
         name: "Broccoli".to_owned(),
-        color: "Usually Green".to_own(),
+        color: "Usually Green".to_owned(),
     }
 
     let response = Response::builder()
