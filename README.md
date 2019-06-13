@@ -1,150 +1,97 @@
-# 🐣 Gatsby Firebase Starter
+<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
+<p align="center">
+  <a href="https://www.gatsbyjs.org">
+    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
+  </a>
+</p>
+<h1 align="center">
+  Gatsby's default starter
+</h1>
 
-[![Build Status](https://travis-ci.org/the-road-to-react-with-firebase/react-gatsby-firebase-authentication.svg?branch=master)](https://travis-ci.org/the-road-to-react-with-firebase/react-gatsby-firebase-authentication) [![Slack](https://slack-the-road-to-learn-react.wieruch.com/badge.svg)](https://slack-the-road-to-learn-react.wieruch.com/) [![Greenkeeper badge](https://badges.greenkeeper.io/the-road-to-react-with-firebase/react-gatsby-firebase-authentication.svg)](https://greenkeeper.io/)
+Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
 
-Your minimal yet extensive authentication starter project in Gatsby.js with Firebase and plain React.
+_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
 
-* Powered by [Gatsby](https://github.com/gatsbyjs/gatsby)
-* [Tutorial](https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/)
-* [Live Version of half of the Tutorial](https://react-firebase-authentication.wieruch.com/)
+## 🚀 Quick start
 
-## Variations
+1.  **Create a Gatsby site.**
 
-* [Only React Version](https://github.com/the-road-to-react-with-firebase/react-firebase-authentication)
-* [Redux Version](https://github.com/the-road-to-react-with-firebase/react-redux-firebase-authentication)
-* [MobX Version](https://github.com/the-road-to-react-with-firebase/react-mobx-firebase-authentication)
-* [Firestore Version](https://github.com/the-road-to-react-with-firebase/react-firestore-authentication)
-* [Semantic UI Version](https://github.com/the-road-to-react-with-firebase/react-semantic-ui-firebase-authentication)
+    Use the Gatsby CLI to create a new site, specifying the default starter.
 
-## Features
+    ```sh
+    # create a new Gatsby site using the default starter
+    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
+    ```
 
-* uses:
-  * only React (**Gatsby.js**)
-  * firebase
-* features:
-  * Sign In
-  * Sign Up
-  * Sign Out
-  * Password Forget
-  * Password Change
-  * Verification Email
-  * Protected Routes with Authorization
-  * Roles-based Authorization
-  * Social Logins with Google, Facebook and Twitter
-  * Linking of Social Logins on Account dashboard
-  * Auth Persistence with Local Storage
-  * Database with Users and Messages
+1.  **Start developing.**
 
-## License
+    Navigate into your new site’s directory and start it up.
 
-### Commercial license
+    ```sh
+    cd my-default-starter/
+    gatsby develop
+    ```
 
-If you want to use this starter project to develop commercial sites, themes, projects, and applications, the Commercial license is the appropriate license. With this option, your source code is kept proprietary. Purchase an commercial license for different team sizes:
+1.  **Open the source code and start editing!**
 
-* [1 Developer](https://gum.co/react-with-firebase-starter-pack-developer)
-* [Team of up to 8 Developers](https://gum.co/react-with-firebase-starter-pack-team)
-* [Unlimited Developers of an Organization](https://gum.co/react-with-firebase-starter-pack-organization)
+    Your site is now running at `http://localhost:8000`!
 
-It grants you also access to the other starter projects in this GitHub organization.
+    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
 
-### Open source license
+    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
 
-If you are creating an open source application under a license compatible with the [GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html), you may use this starter project under the terms of the GPLv3.
+## 🧐 What's inside?
 
-## Installation
+A quick look at the top-level files and directories you'll see in a Gatsby project.
 
-* `git clone https://github.com/the-road-to-react-with-firebase/react-gatsby-firebase-authentication.git`
-* `cd react-gatsby-firebase-authentication`
-* `npm install`
-* save the [Firebase credentials](#firebase-configuration)
-* setup the [security rules](#security-rules)
-* `npm start`
-* visit http://localhost:8000
+    .
+    ├── node_modules
+    ├── src
+    ├── .gitignore
+    ├── .prettierrc
+    ├── gatsby-browser.js
+    ├── gatsby-config.js
+    ├── gatsby-node.js
+    ├── gatsby-ssr.js
+    ├── LICENSE
+    ├── package-lock.json
+    ├── package.json
+    └── README.md
 
-Get an overview of Firebase, how to create a project, what kind of features Firebase offers, and how to navigate through the Firebase project dashboard in this [visual tutorial for Firebase](https://www.robinwieruch.de/firebase-tutorial/).
+1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
 
-### Firebase Configuration
+2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
 
-* copy/paste your configuration from your Firebase project's dashboard into one of these files
-  * *src/components/Firebase/firebase.js* file
-  * *.env* file
-  * *.env.development* and *.env.production* files
+3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
 
-The *.env* or *.env.development* and *.env.production* files could look like the following then:
+4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
 
-```
-GATSBY_API_KEY=AIzaSyBtxZ3phPeXcsZsRTySIXa7n33NtQ
-GATSBY_AUTH_DOMAIN=react-firebase-s2233d64f8.firebaseapp.com
-GATSBY_DATABASE_URL=https://react-firebase-s2233d64f8.firebaseio.com
-GATSBY_PROJECT_ID=react-firebase-s2233d64f8
-GATSBY_STORAGE_BUCKET=react-firebase-s2233d64f8.appspot.com
-GATSBY_MESSAGING_SENDER_ID=701928454501
-```
+5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.org/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
 
-### Activate Sign-In Methods
+6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.org/docs/gatsby-config/) for more detail).
 
-![firebase-enable-google-social-login_640](https://user-images.githubusercontent.com/2479967/49687774-e0a31e80-fb42-11e8-9d8a-4b4c794134e6.jpg)
+7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.org/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
 
-* Email/Password
-* [Google](https://www.robinwieruch.de/react-firebase-social-login/)
-* [Facebook](https://www.robinwieruch.de/firebase-facebook-login/)
-* [Twitter](https://www.robinwieruch.de/firebase-twitter-login/)
-* [Troubleshoot](https://www.robinwieruch.de/react-firebase-social-login/)
+8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.org/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
 
-### Activate Verification E-Mail
+9.  **`LICENSE`**: Gatsby is licensed under the MIT license.
 
-* add a redirect URL for redirecting a user after an email verification into one of these files
-  * *src/components/Firebase/firebase.js* file
-  * *.env* file
-  * *.env.development* and *.env.production* files
+10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
 
-The *.env* or *.env.development* and *.env.production* files could look like the following then (excl. the Firebase configuration).
+11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
 
-**Development:**
+12. **`README.md`**: A text file containing useful reference information about your project.
 
-```
-GATSBY_CONFIRMATION_EMAIL_REDIRECT=http://localhost:3000
-```
+## 🎓 Learning Gatsby
 
-**Production:**
+Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
 
-```
-GATSBY_CONFIRMATION_EMAIL_REDIRECT=https://mydomain.com
-```
+- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
 
-### Security Rules
+- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
 
-In the Firebase console, go to Database, select "Realtime Database" -> Rules, and paste the rules below:
+## 💫 Deploy
 
-```
-{
-  "rules": {
-    ".read": false,
-    ".write": false,
-    "users": {
-      "$uid": {
-        ".read": "$uid === auth.uid || root.child('users/'+auth.uid).child('roles').hasChildren(['ADMIN'])",
-        ".write": "$uid === auth.uid || root.child('users/'+auth.uid).child('roles').hasChildren(['ADMIN'])"
-      },
-      ".read": "root.child('users/'+auth.uid).child('roles').hasChildren(['ADMIN'])",
-      ".write": "root.child('users/'+auth.uid).child('roles').hasChildren(['ADMIN'])"
-    },
-    "messages": {
-      ".indexOn": ["createdAt"],
-      "$uid": {
-        ".write": "data.exists() ? data.child('userId').val() === auth.uid : newData.child('userId').val() === auth.uid"
-      },
-      ".read": "auth != null",
-      ".write": "auth != null",
-    },
-  }
-}
-```
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
 
-## Setup via Gatsby CLI
-
-* `gatsby new react-gatsby-firebase-authentication https://github.com/the-road-to-react-with-firebase/react-gatsby-firebase-authentication.git`
-* `cd react-gatsby-firebase-authentication`
-* `npm install`
-* `gatsby develop`
-* visit http://localhost:8000
+<!-- AUTO-GENERATED-CONTENT:END -->
