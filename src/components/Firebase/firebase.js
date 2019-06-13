@@ -1,25 +1,30 @@
-const config = {
-  apiKey: process.env.GATSBY_API_KEY,
-  authDomain: process.env.GATSBY_AUTH_DOMAIN,
-  databaseURL: process.env.GATSBY_DATABASE_URL,
-  projectId: process.env.GATSBY_PROJECT_ID,
-  storageBucket: process.env.GATSBY_STORAGE_BUCKET,
-  messagingSenderId: process.env.GATSBY_MESSAGING_SENDER_ID,
-};
+import { firebaseConfig } from './secrets';
 
 class Firebase {
   constructor(app) {
-    app.initializeApp(config);
+    app.initializeApp(firebaseConfig);
 
     /* Helper */
 
-    this.serverValue = app.database.ServerValue;
     this.emailAuthProvider = app.auth.EmailAuthProvider;
 
     /* Firebase APIs */
 
     this.auth = app.auth();
-    this.db = app.database();
+    this.db = app.firestore();
+
+    app.firestore().enablePersistence()
+      .catch(function(err) {
+          if (err.code === 'failed-precondition') {
+              // Multiple tabs open, persistence can only be enabled
+              // in one tab at a a time.
+              // ...
+          } else if (err.code === 'unimplemented') {
+              // The current browser does not support all of the
+              // features required to enable persistence
+              // ...
+          }
+      });
 
     /* Social Sign In Method Provider */
 
@@ -62,27 +67,36 @@ class Firebase {
   onAuthUserListener = (next, fallback) =>
     this.auth.onAuthStateChanged(authUser => {
       if (authUser) {
-        this.user(authUser.uid)
-          .once('value')
-          .then(snapshot => {
-            const dbUser = snapshot.val();
+        this.user(authUser.uid).get().then(function(user) {
+            if (user.exists) {
+                let dbUser = user.data();
 
-            // default empty roles
-            if (!dbUser.roles) {
-              dbUser.roles = {};
+                // default empty roles
+                if (!dbUser.roles) {
+                  dbUser.roles = {};
+                }
+
+                // merge auth and db user
+                authUser = {
+                  uid: authUser.uid,
+                  email: authUser.email,
+                  emailVerified: authUser.emailVerified,
+                  providerData: authUser.providerData,
+                  ...dbUser,
+                };
+
+                next(authUser);
+            } else {
+                this.db.collection("users").doc(authUser.uid).set({
+                    uid: authUser.uid,
+                    email: authUser.email,
+                    emailVerified: authUser.emailVerified,
+                    providerData: authUser.providerData,
+                })
             }
-
-            // merge auth and db user
-            authUser = {
-              uid: authUser.uid,
-              email: authUser.email,
-              emailVerified: authUser.emailVerified,
-              providerData: authUser.providerData,
-              ...dbUser,
-            };
-
-            next(authUser);
-          });
+        }).catch(function(error) {
+                console.log("Error getting user:", error);
+        });
       } else {
         fallback();
       }
@@ -90,15 +104,15 @@ class Firebase {
 
   // *** User API ***
 
-  user = uid => this.db.ref(`users/${uid}`);
+  user = uid => this.db.collection('users').doc(uid);
 
-  users = () => this.db.ref('users');
+  users = () => this.db.collection('users');
 
   // *** Message API ***
 
-  message = uid => this.db.ref(`messages/${uid}`);
+  message = uid => this.db.collection('messages').doc(uid);
 
-  messages = () => this.db.ref('messages');
+  messages = () => this.db.collection('messages');
 }
 
 let firebase;

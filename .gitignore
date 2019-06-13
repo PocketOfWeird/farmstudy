@@ -13,6 +13,7 @@
 .DS_Store
 
 # env
+secrets.js
 .env
 .env.development
 .env.production
